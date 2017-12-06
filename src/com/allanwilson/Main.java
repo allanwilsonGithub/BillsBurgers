@@ -5,21 +5,38 @@ import com.sun.org.apache.xpath.internal.SourceTree;
 public class Main {
 
     public static void main(String[] args) {
-	    Hamburger basicBurger = new Hamburger();
-        System.out.println("Basic burger: " + basicBurger.getBasePrice() + " euros. " + basicBurger.getMeat() +  " burger on a " + basicBurger.getBreadRollType() + " roll");
-        System.out.println("===================================================================");
-        // Setting up prices
+
+        System.out.println("================================");
+        System.out.println("ORDER 1 : Basic Burger");
+        Hamburger basicBurger = new Hamburger();
         basicBurger.setAllPricesToDefault();
         basicBurger.getAllPrices();
-        //Additions
-        System.out.println("===================================================================");
-        System.out.println("ORDER 1");
+        // Additions here...
         basicBurger.addLettuce();
         basicBurger.addTomato();
         basicBurger.addCarrot();
         basicBurger.addCucumber();
-        basicBurger.printReceipt();
-        System.out.println("===================================================================");
-        System.out.println("ORDER 2");
+        //
+        System.out.println("Bread Roll: " + basicBurger.getBreadRollType());
+        basicBurger.printTotalReceipt(basicBurger.printBaseReceipt());
+
+        System.out.println("================================");
+        System.out.println("ORDER 2 : Healthy Burger");
+        HealthyBurger goodBurger = new HealthyBurger();
+        goodBurger.setAllPricesToDefault();
+        goodBurger.setHealthPricesToDefault();
+        goodBurger.getAllPrices();
+        // Additions here...
+        goodBurger.addCucumber();
+        goodBurger.addCarrot();
+        goodBurger.addGarlic();
+        goodBurger.addTomato();
+        goodBurger.addOnion();
+        System.out.println("Bread Roll: " + goodBurger.getBreadRollType());
+        goodBurger.printTotalReceipt(goodBurger.printBaseReceipt());
+        goodBurger.getTotalPrice();
+
+        System.out.println("================================");
+        System.out.println("ORDER 3 : Deluxe Burger");
     }
 }

@@ -21,6 +21,11 @@ public class Hamburger {
         this.basePrice = 5.00;
         this.breadRollType = "sesame";
         this.meat = "Beef";
+        this.add1_lettuce = false;
+        this.add2_tomato = false;
+        this.add3_carrot = false;
+        this.add4_cucumber = false;
+        this.total_price = 0;
     }
 
     public String getBasePrice(){
@@ -67,6 +72,9 @@ public class Hamburger {
         String formattedPrice = String.format("%.02f", price_cucumber);
         return formattedPrice;
     }
+    public void setBreadRollType(String type){
+        this.breadRollType = type;
+    }
 
     public String getTotalPrice(){
         String formattedPrice = String.format("%.02f", total_price);
@@ -86,12 +94,13 @@ public class Hamburger {
         add4_cucumber = true;
     }
     public void getAllPrices(){
-        System.out.println("### Prices ###\nLettuce   : " + this.getPrice_lettuce() +
-                "\nTomato    :          " + this.getPrice_tomato() +
-                "\nCarrot    :          " + this.getPrice_carrot() +
-                "\nCucumber  :          " + this.getPrice_cucumber());
+        System.out.println("### Prices ############\n#  Lettuce   :  " + this.getPrice_lettuce() + "  #" +
+                "\n#  Tomato    :  " + this.getPrice_tomato() + "  #" +
+                "\n#  Carrot    :  " + this.getPrice_carrot() + "  #" +
+                "\n#  Cucumber  :  " + this.getPrice_cucumber() + "  #" +
+                "\n#######################");
     }
-    public void printReceipt(){
+    public double printBaseReceipt(){
         System.out.println("Base price:          " + this.getBasePrice());
         this.total_price += this.basePrice;
         //Adds
@@ -111,7 +120,66 @@ public class Hamburger {
             this.total_price += price_cucumber;
             System.out.println("Cucumber  :          " + this.getPrice_cucumber());
         }
-        System.out.println("-------------------------");
-        System.out.println("TOTAL     :          " + this.getTotalPrice());
+        return this.total_price;
+    }
+    public void printTotalReceipt(double TotalPrice){
+        System.out.println("--------------------------");
+        System.out.println("Total price:         " + getTotalPrice());
+    }
+}
+
+class HealthyBurger extends Hamburger{
+    private boolean add5_garlic;
+    private boolean add6_onion;
+    private double price_garlic;
+    private double price_onion;
+
+    public HealthyBurger () {
+        super();
+        setBreadRollType("brown rye");
+    }
+    public void addGarlic(){
+            add5_garlic = true;
+        }
+    public void addOnion(){
+            add6_onion = true;
+        }
+
+    public void setHealthPricesToDefault() {
+        this.price_garlic = 0.30;
+        this.price_onion = 0.40;
+    }
+    public String getPrice_garlic(){
+        String formattedPrice = String.format("%.02f", price_garlic);
+        return formattedPrice;
+
+    }    public String getPrice_onion(){
+        String formattedPrice = String.format("%.02f", price_onion);
+        return formattedPrice;
+    }
+
+    @Override
+    public void printTotalReceipt(double TotalPrice){
+        if (add5_garlic){
+            TotalPrice += price_garlic;
+            System.out.println("Garlic    :          " + this.getPrice_garlic());
+        }
+        if (add6_onion){
+            TotalPrice += price_onion;
+            System.out.println("Onion     :          " + this.getPrice_onion());
+        }
+        System.out.println("--------------------------");
+        System.out.println("Total price:         " + getTotalPrice());
+    }
+
+    @Override
+    public void getAllPrices(){
+        System.out.println("### Prices ############\n#  Lettuce   :  " + this.getPrice_lettuce() + "  #" +
+                "\n#  Tomato    :  " + this.getPrice_tomato() + "  #" +
+                "\n#  Carrot    :  " + this.getPrice_carrot() + "  #" +
+                "\n#  Cucumber  :  " + this.getPrice_cucumber() + "  #" +
+                "\n#  Garlic    :  " + this.getPrice_garlic() + "  #" +
+                "\n#  Onion     :  " + this.getPrice_onion() + "  #" +
+                "\n#######################");
     }
 }
