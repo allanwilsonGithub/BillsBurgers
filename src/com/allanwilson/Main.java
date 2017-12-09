@@ -38,5 +38,14 @@ public class Main {
 
         System.out.println("================================");
         System.out.println("ORDER 3 : Deluxe Burger");
+        DeluxeBurger cashBurger = new DeluxeBurger();
+        cashBurger.DeluxePricesToDefault();
+        cashBurger.getAllPrices();
+        cashBurger.addCucumber();
+        cashBurger.addCarrot();
+        cashBurger.addGarlic();
+        cashBurger.addTomato();
+        cashBurger.addOnion();
+        cashBurger.printTotalReceipt(cashBurger.printBaseReceipt());
     }
 }

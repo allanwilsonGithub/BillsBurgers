@@ -152,8 +152,8 @@ class HealthyBurger extends Hamburger{
     public String getPrice_garlic(){
         String formattedPrice = String.format("%.02f", price_garlic);
         return formattedPrice;
-
-    }    public String getPrice_onion(){
+    }
+    public String getPrice_onion(){
         String formattedPrice = String.format("%.02f", price_onion);
         return formattedPrice;
     }
@@ -169,7 +169,8 @@ class HealthyBurger extends Hamburger{
             System.out.println("Onion     :          " + this.getPrice_onion());
         }
         System.out.println("--------------------------");
-        System.out.println("Total price:         " + getTotalPrice());
+        String formattedPrice = String.format("%.02f", TotalPrice);
+        System.out.println("Total price:         " + formattedPrice);
     }
 
     @Override
@@ -181,5 +182,71 @@ class HealthyBurger extends Hamburger{
                 "\n#  Garlic    :  " + this.getPrice_garlic() + "  #" +
                 "\n#  Onion     :  " + this.getPrice_onion() + "  #" +
                 "\n#######################");
+    }
+}
+
+class DeluxeBurger extends Hamburger {
+    private boolean add7_chips;
+    private boolean add8_drink;
+    private double price_chips;
+    private double price_drink;
+
+
+    public DeluxeBurger() {
+        super();
+        this.add7_chips = true;
+        this.add8_drink = true;
+    }
+    public void DeluxePricesToDefault() {
+        this.price_chips = 1.00;
+        this.price_drink = 1.50;
+    }
+    public String getPrice_chips(){
+        String formattedPrice = String.format("%.02f", price_chips);
+        return formattedPrice;
+    }
+    public String getPrice_drink(){
+        String formattedPrice = String.format("%.02f", price_drink);
+        return formattedPrice;
+    }
+    public void addLettuce(){
+        System.out.println("Can't make additions to duluxe burger!");;
+    }
+    public void addTomato(){
+        System.out.println("Can't make additions to duluxe burger!");
+    }
+    public void addCarrot(){
+        System.out.println("Can't make additions to duluxe burger!");
+    }
+    public void addCucumber(){
+        System.out.println("Can't make additions to duluxe burger!");
+    }
+    public void addOnion(){
+        System.out.println("Can't make additions to duluxe burger!");
+    }
+    public void addGarlic(){
+        System.out.println("Can't make additions to duluxe burger!");
+    }
+
+    @Override
+    public void printTotalReceipt(double TotalPrice){
+        if (add7_chips) {
+            TotalPrice += price_chips;
+            System.out.println("Chips     :          " + this.getPrice_chips());
+        }
+        if (add8_drink) {
+            TotalPrice += price_drink;
+            System.out.println("Drink     :          " + this.getPrice_drink());
+        }
+        System.out.println("--------------------------");
+        String formattedPrice = String.format("%.02f", TotalPrice);
+        System.out.println("Total price:         " + formattedPrice);
+    }
+
+    @Override
+    public void getAllPrices(){
+        System.out.println("### Prices ############\n#  Chips    :   " + this.getPrice_chips() + "  #" +
+                        "\n#  Drink   :    " + this.getPrice_drink() + "  #" +
+                        "\n#######################");
     }
 }
